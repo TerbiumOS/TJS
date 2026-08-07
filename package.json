@@ -1,0 +1,43 @@
+{
+  "name": "@terbiumos/tjs",
+  "version": "1.0.0-alpha",
+  "description": "Terbium.js - Universal SDK for building apps that work in Terbium and browsers",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "terbium",
+    "terbiumos",
+    "webos",
+    "cloud",
+    "sdk"
+  ],
+  "author": "TerbiumOS Development",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "peerDependencies": {},
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
