@@ -3,270 +3,203 @@
  * These provide limited or no functionality in browser mode
  */
 
-import type {
-  DesktopAPI,
-  LauncherAPI,
-  BatteryAPI,
-  UserAPI,
-  ProcessAPI,
-  ContextMenuAPI,
-  DockItem,
-  LauncherApp,
-  ProcessInfo,
-  ContextMenuItem,
-} from '../types';
-import { getNativeTerbiumAPI } from '../env';
+import type { DesktopAPI, LauncherAPI, BatteryAPI, UserAPI, TDockItem, LauncherProps } from "../types";
+import { getNativeTerbiumAPI } from "../env";
 
 // Desktop API
 export class TerbiumDesktop implements DesktopAPI {
-  private get native() {
-    return getNativeTerbiumAPI()?.desktop;
-  }
+	private get native() {
+		return getNativeTerbiumAPI()?.desktop;
+	}
 
-  private get isTerbium(): boolean {
-    return !!this.native;
-  }
+	private get isTerbium(): boolean {
+		return !!this.native;
+	}
 
-  preferences = {
-    setTheme: async (color: string): Promise<void> => {
-      if (this.isTerbium) {
-        await this.native.preferences.setTheme(color);
-      }
-    },
+	preferences = {
+		setTheme: async (color: string): Promise<void> => {
+			if (this.isTerbium) {
+				await this.native.preferences.setTheme(color);
+			}
+		},
 
-    theme: async (): Promise<string> => {
-      if (this.isTerbium) {
-        return await this.native.preferences.theme();
-      }
-      return '#000000';
-    },
+		theme: async (): Promise<string> => {
+			if (this.isTerbium) {
+				return await this.native.preferences.theme();
+			}
+			return "#000000";
+		},
 
-    setAccent: async (color: string): Promise<void> => {
-      if (this.isTerbium) {
-        await this.native.preferences.setAccent(color);
-      }
-    },
+		setAccent: async (color: string): Promise<void> => {
+			if (this.isTerbium) {
+				await this.native.preferences.setAccent(color);
+			}
+		},
 
-    getAccent: async (): Promise<string> => {
-      if (this.isTerbium) {
-        return await this.native.preferences.getAccent();
-      }
-      return '#0078d4';
-    },
-  };
+		getAccent: async (): Promise<string> => {
+			if (this.isTerbium) {
+				return await this.native.preferences.getAccent();
+			}
+			return "#0078d4";
+		},
+	};
 
-  wallpaper = {
-    set: async (path: string): Promise<void> => {
-      if (this.isTerbium) {
-        await this.native.wallpaper.set(path);
-      }
-    },
+	wallpaper = {
+		set: async (path: string): Promise<void> => {
+			if (this.isTerbium) {
+				await this.native.wallpaper.set(path);
+			}
+		},
 
-    contain: async (): Promise<void> => {
-      if (this.isTerbium) {
-        await this.native.wallpaper.contain();
-      }
-    },
+		contain: async (): Promise<void> => {
+			if (this.isTerbium) {
+				await this.native.wallpaper.contain();
+			}
+		},
 
-    stretch: async (): Promise<void> => {
-      if (this.isTerbium) {
-        await this.native.wallpaper.stretch();
-      }
-    },
+		stretch: async (): Promise<void> => {
+			if (this.isTerbium) {
+				await this.native.wallpaper.stretch();
+			}
+		},
 
-    cover: async (): Promise<void> => {
-      if (this.isTerbium) {
-        await this.native.wallpaper.cover();
-      }
-    },
+		cover: async (): Promise<void> => {
+			if (this.isTerbium) {
+				await this.native.wallpaper.cover();
+			}
+		},
 
-    fillMode: async (): Promise<string> => {
-      if (this.isTerbium) {
-        return await this.native.wallpaper.fillMode();
-      }
-      return 'cover';
-    },
-  };
+		fillMode: async (): Promise<string> => {
+			if (this.isTerbium) {
+				return await this.native.wallpaper.fillMode();
+			}
+			return "cover";
+		},
+	};
 
-  dock = {
-    pin: async (app: DockItem): Promise<string> => {
-      if (this.isTerbium) {
-        return await this.native.dock.pin(app);
-      }
-      return 'Not available in browser mode';
-    },
+	dock = {
+		pin: async (app: TDockItem): Promise<string> => {
+			if (this.isTerbium) {
+				return await this.native.dock.pin(app);
+			}
+			return "Not available in browser mode";
+		},
 
-    unpin: async (app: string): Promise<string> => {
-      if (this.isTerbium) {
-        return await this.native.dock.unpin(app);
-      }
-      return 'Not available in browser mode';
-    },
-  };
+		unpin: async (app: string): Promise<string> => {
+			if (this.isTerbium) {
+				return await this.native.dock.unpin(app);
+			}
+			return "Not available in browser mode";
+		},
+	};
 }
 
 // Launcher API
 export class TerbiumLauncher implements LauncherAPI {
-  private get native() {
-    return getNativeTerbiumAPI()?.launcher;
-  }
+	private get native() {
+		return getNativeTerbiumAPI()?.launcher;
+	}
 
-  private get isTerbium(): boolean {
-    return !!this.native;
-  }
+	private get isTerbium(): boolean {
+		return !!this.native;
+	}
 
-  async addApp(props: LauncherApp): Promise<boolean> {
-    if (this.isTerbium) {
-      return await this.native.addApp(props);
-    }
-    return false;
-  }
+	async addApp(props: LauncherProps): Promise<boolean> {
+		if (this.isTerbium) {
+			return await this.native.addApp(props);
+		}
+		return false;
+	}
 
-  async removeApp(name: string): Promise<boolean> {
-    if (this.isTerbium) {
-      return await this.native.removeApp(name);
-    }
-    return false;
-  }
+	async removeApp(name: string): Promise<boolean> {
+		if (this.isTerbium) {
+			return await this.native.removeApp(name);
+		}
+		return false;
+	}
 }
 
 // Battery API
 export class TerbiumBattery implements BatteryAPI {
-  private get native() {
-    return getNativeTerbiumAPI()?.battery;
-  }
+	private get native() {
+		return getNativeTerbiumAPI()?.battery;
+	}
 
-  private get isTerbium(): boolean {
-    return !!this.native;
-  }
+	private get isTerbium(): boolean {
+		return !!this.native;
+	}
 
-  async showPercentage(): Promise<string> {
-    if (this.isTerbium) {
-      return await this.native.showPercentage();
-    }
-    return 'Not available';
-  }
+	async showPercentage(): Promise<string> {
+		if (this.isTerbium) {
+			return await this.native.showPercentage();
+		}
+		return "Not available";
+	}
 
-  async hidePercentage(): Promise<string> {
-    if (this.isTerbium) {
-      return await this.native.hidePercentage();
-    }
-    return 'Not available';
-  }
+	async hidePercentage(): Promise<string> {
+		if (this.isTerbium) {
+			return await this.native.hidePercentage();
+		}
+		return "Not available";
+	}
 
-  async canUse(): Promise<boolean> {
-    if (this.isTerbium) {
-      return await this.native.canUse();
-    }
-
-    // Browser fallback: check for Battery API
-    return 'getBattery' in navigator;
-  }
+	async canUse(): Promise<boolean> {
+		if (this.isTerbium) {
+			return await this.native.canUse();
+		}
+		return "getBattery" in navigator;
+	}
 }
 
 // User API
 export class TerbiumUser implements UserAPI {
-  private get native() {
-    return getNativeTerbiumAPI()?.user;
-  }
+	private get native() {
+		return getNativeTerbiumAPI()?.user;
+	}
 
-  private get isTerbium(): boolean {
-    return !!this.native;
-  }
+	private get isTerbium(): boolean {
+		return !!this.native;
+	}
 
-  async username(): Promise<string> {
-    if (this.isTerbium) {
-      return await this.native.username();
-    }
-    return 'guest';
-  }
+	async username(): Promise<string> {
+		if (this.isTerbium) {
+			return await this.native.username();
+		}
+		return "guest";
+	}
 
-  async pfp(): Promise<string> {
-    if (this.isTerbium) {
-      return await this.native.pfp();
-    }
-    return '';
-  }
+	async pfp(): Promise<string> {
+		if (this.isTerbium) {
+			return await this.native.pfp();
+		}
+		return "";
+	}
 
-  async email(): Promise<string | null> {
-    if (this.isTerbium) {
-      return await this.native.email();
-    }
-    return null;
-  }
+	async email(): Promise<string | null> {
+		if (this.isTerbium) {
+			return await this.native.email();
+		}
+		return null;
+	}
 
-  async id(): Promise<string> {
-    if (this.isTerbium) {
-      return await this.native.id();
-    }
-    return 'browser-user';
-  }
+	async id(): Promise<string> {
+		if (this.isTerbium) {
+			return await this.native.id();
+		}
+		return "browser-user";
+	}
 
-  async isGuest(): Promise<boolean> {
-    if (this.isTerbium) {
-      return await this.native.isGuest();
-    }
-    return true;
-  }
+	async isGuest(): Promise<boolean> {
+		if (this.isTerbium) {
+			return await this.native.isGuest();
+		}
+		return true;
+	}
 
-  async permissions(): Promise<string[]> {
-    if (this.isTerbium) {
-      return await this.native.permissions();
-    }
-    return [];
-  }
-}
-
-// Process API
-export class TerbiumProcess implements ProcessAPI {
-  private get native() {
-    return getNativeTerbiumAPI()?.process;
-  }
-
-  private get isTerbium(): boolean {
-    return !!this.native;
-  }
-
-  async list(): Promise<ProcessInfo[]> {
-    if (this.isTerbium) {
-      return await this.native.list();
-    }
-    return [];
-  }
-
-  async kill(pid: number): Promise<void> {
-    if (this.isTerbium) {
-      await this.native.kill(pid);
-    }
-  }
-
-  async create(name: string, fn: Function): Promise<number> {
-    if (this.isTerbium) {
-      return await this.native.create(name, fn);
-    }
-    return 0;
-  }
-}
-
-// Context Menu API
-export class TerbiumContextMenu implements ContextMenuAPI {
-  private get native() {
-    return getNativeTerbiumAPI()?.contextMenu;
-  }
-
-  private get isTerbium(): boolean {
-    return !!this.native;
-  }
-
-  show(items: ContextMenuItem[], x?: number, y?: number): void {
-    if (this.isTerbium) {
-      this.native.show(items, x, y);
-    }
-  }
-
-  hide(): void {
-    if (this.isTerbium) {
-      this.native.hide();
-    }
-  }
+	async permissions(): Promise<string[]> {
+		if (this.isTerbium) {
+			return await this.native.permissions();
+		}
+		return [];
+	}
 }

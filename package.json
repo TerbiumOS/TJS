@@ -1,43 +1,60 @@
 {
-  "name": "@terbiumos/tjs",
-  "version": "1.0.0-alpha",
-  "description": "Terbium.js - Universal SDK for building apps that work in Terbium and browsers",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
-  },
-  "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest",
-    "prepublishOnly": "npm run build"
-  },
-  "keywords": [
-    "terbium",
-    "terbiumos",
-    "webos",
-    "cloud",
-    "sdk"
-  ],
-  "author": "TerbiumOS Development",
-  "license": "Apache-2.0",
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "tsup": "^8.0.0",
-    "typescript": "^5.0.0",
-    "vitest": "^1.0.0"
-  },
-  "peerDependencies": {},
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ]
+	"name": "@terbiumos/tjs",
+	"version": "1.0.0",
+	"description": "Terbium.js - Universal SDK for building apps that work in Terbium and browsers",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"typecheck": "tsc --noEmit",
+		"test": "vitest",
+		"prepublishOnly": "npm run build",
+		"format": "biome format --write ."
+	},
+	"keywords": [
+		"terbium",
+		"terbiumos",
+		"webos",
+		"cloud",
+		"sdk"
+	],
+	"author": "TerbiumOS Development",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/terbiumos/tjs.git"
+	},
+	"bugs": {
+		"url": "https://github.com/terbiumos/tjs/issues"
+	},
+	"homepage": "https://github.com/terbiumos/tjs#readme",
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.8",
+		"@types/node": "^20.0.0",
+		"tsdown": "^0.22.14",
+		"typescript": "^5.0.0",
+		"vitest": "^1.0.0"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"publishConfig": {
+		"access": "public"
+	}
 }
