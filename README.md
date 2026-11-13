@@ -2,7 +2,7 @@
 
 Universal SDK for building applications that work seamlessly in both Terbium OS and standard web browsers.
 
-## ✨ Features
+## Features
 
 - **Complete 1:1 Terbium API** - Full implementation of the entire Terbium OS API surface
 - **Environment Detection** - Automatically detects if running in Terbium or browser
@@ -12,7 +12,7 @@ Universal SDK for building applications that work seamlessly in both Terbium OS 
 - **Lightweight** - Minimal overhead, tree-shakeable
 - **Universal** - Write once, run everywhere
 
-## 📦 Installation
+## Installation
 
 ### NPM
 
@@ -26,7 +26,7 @@ npm install @terbiumos/tjs
 <script src="https://cdn.jsdelivr.net/npm/@terbiumos/tjs@latest/dist/index.min.js"></script>
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ```typescript
 import { tb } from '@terbiumos/tjs';
@@ -46,7 +46,7 @@ if (tb.isTerbium) {
 }
 ```
 
-## 📚 Complete API Coverage
+## Complete API Coverage
 
 TJS provides **100% API coverage** of the Terbium OS API, including:
 
@@ -94,7 +94,7 @@ TJS provides **100% API coverage** of the Terbium OS API, including:
 - ✅ **Node** - WebContainer compatibility
 - ✅ **Dusk** - Dusk runtime access
 
-## 📖 API Documentation
+## API Documentation
 
 ### File System
 
@@ -425,7 +425,7 @@ tb.file.handler.addHandler('myapp', 'custom');
 tb.file.handler.removeHandler('custom');
 ```
 
-## 🌐 Environment Detection
+## Environment Detection
 
 ```typescript
 import { tb, isTerbiumEnvironment, getEnvironment } from '@terbiumos/tjs';
@@ -443,7 +443,7 @@ const isTerbium = isTerbiumEnvironment();
 const env = getEnvironment();
 ```
 
-## 🔄 Fallback Behavior
+## Fallback Behavior
 
 When running outside Terbium, APIs automatically fall back to browser equivalents:
 
@@ -465,7 +465,7 @@ When running outside Terbium, APIs automatically fall back to browser equivalent
 | `tauth.*` | Terbium Cloud | Not supported |
 | `dusk.*` | Dusk runtime | Not supported |
 
-## 📘 TypeScript Support
+## TypeScript Support
 
 Terbium.js is written in TypeScript and provides full type definitions:
 
@@ -485,7 +485,7 @@ const config: WindowConfig = {
 tb.window.create(config);
 ```
 
-## 🎯 Development
+## Development
 
 ```bash
 # Install dependencies
@@ -501,10 +501,11 @@ npm test
 npm run dev
 ```
 
-## 📄 License
+## License
 
 Apache 2.0
 
 ---
 
-**Made with ❤️ for the Terbium OS ecosystem**
+- **Made with ❤️ for the Terbium OS ecosystem**
+- &copy; Copyright 2027 TerbiumOS Development
